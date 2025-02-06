@@ -28,7 +28,7 @@ class _SearchState extends State<MySearchbar> {
                 textController.text = "On button click ${textController.text}";
               });
             },
-            child: Text("Press to see text input data"))
+            child: Text("Check text Data"))
       ],
     );
   }

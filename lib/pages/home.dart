@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furdle/models/catergories_model.dart';
 import 'package:furdle/pages/counter.dart';
+import 'package:furdle/pages/get_users.dart';
 import 'package:furdle/pages/searchBar.dart';
 
 class Home extends StatelessWidget {
@@ -17,7 +18,7 @@ class Home extends StatelessWidget {
     var scaffold = Scaffold(
       backgroundColor: Colors.amber,
       body: Column(
-        children: [ScrollPart(), Counter(), MySearchbar()],
+        children: [ScrollPart(), Counter(), MySearchbar(), GetUsers()],
       ),
     );
     return scaffold;
@@ -26,25 +27,39 @@ class Home extends StatelessWidget {
   SingleChildScrollView ScrollPart() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          for (var category in categories)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text(category.name),
-                  SizedBox(width: 10),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    color: category.boxColor,
-                  ),
-                ],
-              ),
+      child: TopbarScroll(categories: categories),
+    );
+  }
+}
+
+class TopbarScroll extends StatelessWidget {
+  const TopbarScroll({
+    super.key,
+    required this.categories,
+  });
+
+  final List<CategoryModel> categories;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        for (var category in categories)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(category.name),
+                SizedBox(width: 10),
+                Container(
+                  width: 20,
+                  height: 20,
+                  color: category.boxColor,
+                ),
+              ],
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }
