@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furdle/pages/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: "Some random stuffs",
-        // Optional: Removes debug banner
         theme: ThemeData(primarySwatch: Colors.deepPurple),
         home: Home());
   }
