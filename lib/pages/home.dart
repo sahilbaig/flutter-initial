@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furdle/models/catergories_model.dart';
+import 'package:furdle/pages/counter.dart';
+import 'package:furdle/pages/searchBar.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -15,50 +17,35 @@ class Home extends StatelessWidget {
     var scaffold = Scaffold(
       backgroundColor: Colors.amber,
       body: Column(
-        children: [
-          Text(
-            "Meow",
-            textDirection: TextDirection.ltr,
-          ),
-          Text(
-            "Meowssss",
-            textDirection: TextDirection.ltr,
-          ),
-          SearchBar(),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                for (var category in categories)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Text(category.name),
-                        SizedBox(width: 10),
-                        Container(
-                          width: 20,
-                          height: 20,
-                          color: category.boxColor,
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-          )
-        ],
+        children: [ScrollPart(), Counter(), MySearchbar()],
       ),
-      appBar: AppBar(
-          title: Text(
-            "Hello there",
-            style: TextStyle(color: Colors.white, fontSize: 36),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
-          leading: topBar(categories[0].name)),
     );
     return scaffold;
+  }
+
+  SingleChildScrollView ScrollPart() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var category in categories)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(category.name),
+                  SizedBox(width: 10),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    color: category.boxColor,
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
   }
 }
 
